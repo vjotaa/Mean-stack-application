@@ -1,0 +1,24 @@
+
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+.full {
+    background: url('assets/girl.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    margin: 0px;
+    height: 100%;
+    
+  
+}
+
+.alert-info {
+    color: white;
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 1.2em;
+
+}
