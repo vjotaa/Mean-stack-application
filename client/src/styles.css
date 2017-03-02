@@ -18,7 +18,7 @@ body,html {
     border: 1px transparent;
     border-bottom: 1px solid;
     box-shadow: none;
-    transition: 1s;
+    transition: 0.3s;
 }
 
 .form-control::-webkit-input-placeholder { color: white; }
