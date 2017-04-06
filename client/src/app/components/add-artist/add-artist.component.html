@@ -1,0 +1,47 @@
+
+<div *ngIf="identity && identity.role== 'ROLE_ADMIN'; else error " class="col-lg-6">
+  <h1>{{title}}</h1>
+
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info">
+      {{alertMessage}}
+    </div>
+  </div>
+  <form  #formArtist= "ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <label >Name of the artist</label>
+      <input class= "form-control" type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" required >
+      <span *ngIf= "!name.valid && name.touched">
+        The name is require!
+      </span>
+    </p>
+
+
+    <p>
+      <label >Description of the artist</label>
+      <textarea  class= "form-control"  #description="ngModel" name="description" [(ngModel)]="artist.description" required > </textarea>
+      <span *ngIf= "!description.valid && description.touched">
+        The description is require!
+      </span>
+    </p>
+
+    <div *ngIf="is_edit">
+      <div class="artist-image-for-edit" *ngIf="artist.image && !artist.image != 'null' ">
+        <img src="{{url+'get-image-artist/'+artist.image}}" alt="">
+        <p>
+          <label >Upload your image</label>
+          <input type="file" placeholder="Upload image" (change)="fileChangeEvent($event)" >
+        </p>
+      </div>
+    </div>
+
+    <input class = "btn btn-default" type="submit" value="{{title}}" [disabled]="!formArtist.form.valid">
+
+
+
+  </form>
+
+</div>
+<ng-template #error>
+  <h1>You don't have the permission to stay here :)</h1>
+</ng-template>

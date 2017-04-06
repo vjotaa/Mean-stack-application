@@ -1,5 +1,6 @@
 body,html {
     height:100%; 
+    margin: 0px;
 }
 
 .form-control{
@@ -25,3 +26,78 @@ body,html {
 .form-control:-moz-placeholder { color: white; }
 .form-control::-moz-placeholder { color: white; }
 .form-control:-ms-input-placeholder { color: white; }
+
+.head-title{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.navigation{
+    text-align: center;
+    color: white;
+    background: #1C1C1F;
+    height: 100vh;
+}
+
+.navigation a{
+    color: #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    text-decoration: none;
+}
+
+
+.navigation a:hover{
+    color: white;
+}
+.navigation .glyphicon{
+    font-size: 25px;
+    display: block;
+    width: 100%;
+}
+
+#user_logged{
+    backface-visibility: #1C1C1F;
+    position: absolute; 
+    bottom: 0px;
+    border-top: 10x solid white;
+    width: 75%;
+}
+
+#user_logged .glyphicon-log-out{
+    font-size: 16px;
+
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+#user_logged .img-rounded{
+    background: #eee;
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.actived{
+    border-bottom: 4px solid lightblue;
+    padding-bottom: 4px;
+}
+
+.artist-image-for-edit img{
+    width: 150px;
+}
+
+.col-centered{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

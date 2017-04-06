@@ -22,10 +22,11 @@
       </p>
 
       <div class="image_for_edit" *ngIf="user.image && user.image != null">
-        <img src="">
+        <img src= '{{url+"get-image-user/"+user.image}}' style="width: 50px;" alt="">
         <p>
+          
           <label >Upload your avatar</label>
-          <input type="file" placegolder="Upload image...">
+          <input type="file" placegolder="Upload image..."(change)="fileChangeEvent($event)">
         </p>
       </div>
 

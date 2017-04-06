@@ -25,7 +25,7 @@ function saveUser(req,res){
   user.name = params.name;
   user.surname = params.surname;
   user.email = params.email;
-  user.role = 'ROLE_ADMIN';
+  user.role = 'ROLE_USER';
   user.image = 'null';
 
   if(params.password){
@@ -65,7 +65,7 @@ function loginUser(req,res){
       res.status(500).send({message:"Error in the petition"});
     }else{
       if(!user){
-        res.status(404).send({message:"The user doesnt exist"});
+        res.status(404).send({message:"The user doesn't exist"});
       }else{
         bcrypt.compare(password,user.password, (err,check)=>{
           if(check){
