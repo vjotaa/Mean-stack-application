@@ -15,22 +15,31 @@
         <li><a [routerLink]=" ['/artists',next_page] ">&raquo;</a></li>
       </ul>
       <div class="clearfix"></div>
-        <ul *ngIf="identity" class="">
-          <li *ngFor="let artist of artists" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
-            <div class="card">
-              <img src="{{url+'get-image-artist/'+artist.image}}" style="width:100%">
-              <div class="artist-name">
-                <h4><b>{{artist.name}}</b></h4> 
-                <p>{{artist.description}}</p> 
-              </div>
-            </div>
+        <ul *ngIf="identity" class="none">
+          <li *ngFor="let artist of artists" class="col-lg-3 col-md-4 col-sm-6 col-xs-11" >
+
+    <div class="post-module">
+      <div class="thumbnail">
+        <div>
+        </div><img class="img-responsive" src="{{url+'get-image-artist/'+artist.image}}"/>
+      </div>
+      <div class="post-content">
+        <h1 class="title">{{artist.name}}</h1>
+        <a class="description" href="#">Biography</a>
+        <a class="description" href="#">Albums</a>
+        <a class="description" href="#">Songs</a>
+          <div  *ngIf="identity.role == 'ROLE_ADMIN'" class="right">
+              <a class="admin-button" [routerLink]=" ['/edit-artist',artist._id] ">Edit</a> ||
+              <a class="admin-button" href="#" >Delete</a>
+            </div>  
+        </div>
+  
+
+    </div>
+ 
             
             
-     
-            <div *ngIf="identity.role == 'ROLE_ADMIN'" class="buttons">
-              <a class="btn btn-default" [routerLink]=" ['/edit-artist',artist._id] ">Edit</a>
-              <a class="btn btn-default" href="#" >Delete</a>
-            </div>
+
 
           </li>
         </ul>
