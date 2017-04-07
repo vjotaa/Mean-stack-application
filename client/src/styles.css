@@ -1,6 +1,10 @@
 body,html {
     height:100%; 
     margin: 0px;
+    background-color: #171717;
+}
+h1,p{
+    color: white;
 }
 
 .form-control{
@@ -30,9 +34,9 @@ body,html {
 .head-title{
     font-size: 20px;
     font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+    margin-right: 25px;
     display: block;
+
 }
 
 .navigation{
@@ -42,30 +46,20 @@ body,html {
     height: 100vh;
 }
 
-.navigation a{
+a{
     color: #ddd;
-    margin-top: 20px;
     margin-bottom: 20px;
     display: block;
     text-decoration: none;
 }
+a:hover{
+    text-decoration: none;
+    color: inherit;
+}
 
 
-.navigation a:hover{
-    color: white;
-}
-.navigation .glyphicon{
-    font-size: 25px;
-    display: block;
-    width: 100%;
-}
 
 #user_logged{
-    backface-visibility: #1C1C1F;
-    position: absolute; 
-    bottom: 0px;
-    border-top: 10x solid white;
-    width: 75%;
 }
 
 #user_logged .glyphicon-log-out{
@@ -100,4 +94,36 @@ body,html {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.no-margin{
+    margin: 0px !important;
+}
+
+#user_logged li{
+    margin-left: 20px;
+}
+
+li{
+    font-size: 1.2em;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
+p::selection {
+  background: gray;
 }

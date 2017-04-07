@@ -1,12 +1,14 @@
 
+
+
 .full {
-    background: url('/assets/girl.jpeg') no-repeat center center fixed;
+    background: url('/assets/let.jpeg')  center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    margin: 0px;
     height: 100vh;
+    
     
   
 }
@@ -18,4 +20,23 @@
     border-radius: 4px;
     font-size: 1.2em;
 
+}
+
+.navbar {
+   background-color:#222124;
+   border-bottom: 5px solid rgba(0, 0, 0, 0.5);;
+   margin: 0px;
+   padding: 0px;
+   height: 100px;
+  
+   }
+
+.navbar li { color: #000 } 
+
+p{
+    font-size: 1.1em;
+}
+
+.padding-top{
+    padding-top: 20px;
 }

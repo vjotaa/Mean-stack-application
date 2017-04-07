@@ -1,93 +1,120 @@
 <div *ngIf="identity">
-  <div class= "navigation col-lg-1" >
-    <h1 class='head-title'> 
-      <a [routerLink]="['/']"  >{{title}}</a>  
-    </h1>
-    <nav id="navigation">
-      <a href="#">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      search</a>
-      <a [routerLink]="['/artists',1]" [routerLinkActive]="['actived']" >
-        <span  class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      Artist</a>
-      <a href="#">
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-      Albums</a>
-    </nav>
-
-    <nav id="user_logged">
-      <div  class="user-image">
-        <img class="img-rounded" id="image-logged" src= '{{url+"get-image-user/"+identity.image}}' >
+    <nav class="padding-top navbar navbar-default navbar-static-top">
+      <div class=" container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+              <h1 class='head-title'> 
+                <a [routerLink]="['/']"  >{{title}}</a>  
+              </h1>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+            <li>
+              <a [routerLink]="['/artists',1]" [routerLinkActive]="['actived']">Artist</a>
+            </li>
+            
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Albums</a></li>
+           <!-- <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li> -->
+          </ul>
+          <ul id="user_logged" class="nav navbar-nav navbar-right">
+            <li >
+              <div  class="user-image">
+                <img class=" no-margin img-rounded" id="image-logged" src= '{{url+"get-image-user/"+identity.image}}' >
+                <p id="identity-name">{{identity.name}}</p>
+              </div>
+            </li>
+            <li>
+              <a [routerLink]="['/my-profile']"  [routerLinkActive]="['actived']" >
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+            </li>
+            <li>
+              <a class="pointer"(click)="logout()" >
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+              </a>
+            </li>            
+          </ul>
+        </div>
       </div>
-      <h4 id="identity-name"> {{identity.name}}</h4>
-
-      <a [routerLink]="['/my-profile']"  [routerLinkActive]="['actived']" >
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      Profile</a>
-
-      <a class="pointer"(click)="logout()" >
-        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-        Log out
-      </a>
     </nav>
-  </div>
-
-
 </div>
-    <div [class.hidden]="!identity" class="central col-lg-11">
-      <router-outlet></router-outlet>
-    </div>
+<div [class.hidden]="!identity" class="central col-lg-12">
+  <router-outlet></router-outlet>
+</div>
 <div *ngIf="!identity">
-  <div class="col-lg-12  full" style="background-color: black;" *ngIf="!identity">
-    <div class=" col-lg-6 col-md-6 col-xs-12">
+  <div class="full" *ngIf="!identity">
+    <div class="container">
+      <div class="row">
+        <div class=" form-style col-lg-6 col-md-6 col-xs-12">
 
-      <h1>Identificate</h1>
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-5" >
-        <p>
-          <label>Email:</label>
-          <input placeholder="Introduce the email" #email="ngModel" name="email" [(ngModel)]="user.email" type="email" class="form-control" required>
-          <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
-        </p>
-        <p>
-          <label>Password:</label>
-          <input placeholder="Introduce the password" type="password" class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password" required>
-        </p>
-        <input type="submit" value="Login" class="btn btn-primary">
-        <div *ngIf="errorMessage" class="alert alert-info">
-          <strong>ERROR: </strong>{{errorMessage}}
-        </div>
-      </form>
-      
-    </div>
-    <div class="col-lg-6 col-md-6 col-xs-12">
-      <h1>Registrate</h1>
-        <div *ngIf="alertRegister" class="alert alert-info">
-          {{alertRegister}}
-        </div>
-      <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-5">
-        <p>
-          <label>Name:</label>
+          <h1>Sign in</h1>
+          <div *ngIf="errorMessage" class="alert alert-info">
+            <strong>ERROR: </strong>{{errorMessage}}
+          </div> 
+          <form  #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-6" >
+            <p>
+              <label>Email:</label>
+              <input placeholder="Introduce the email" #email="ngModel" name="email" [(ngModel)]="user.email" type="email" class="form-control" required>
+              <span *ngIf="!email.valid && email.touched">Email is required</span>
+            </p>
+            <p>
+              <label>Password:</label>
+              <input placeholder="Introduce the password" type="password" class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password" required>
+            </p>
+            <input type="submit" value="Login" class="btn btn-default">
 
-          <input  #name="ngModel" name= "name" [(ngModel)]="user_register.name"  type="text" class="form-control" required>
-          <span *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
-        </p>
-        <p>
-          <label>Last name:</label>
-          <input #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" type="text" class="form-control">
-          <span *ngIf="!surname.valid && surname.touched">El apellido es obligatorio</span>
-        </p>
-        <p>
-          <label>Email:</label>
-          <input #emailre="ngModel" name="email" [(ngModel)]="user_register.email" type="email" class="form-control" required>
-          <span *ngIf="!emailre.valid && emailre.touched">El email es obligatorio</span>
-        </p>
-        <p>
-          <label>Password:</label>
-          <input #passwordre="ngModel" name="password" [(ngModel)]="user_register.password" type="password" class="form-control" required>
-          <span *ngIf="!passwordre.valid && passwordre.touched">El password es obligatorio</span>
-        </p>
-        <input type="submit" value="Register" class="btn btn-primary" [disabled]="!registerForm.form.valid">
-      </form>
+          </form>
+ 
+        </div>
+
+        <div class=" card col-lg-6 col-md-6 col-xs-12">
+          <h1>Sign up</h1>
+          <div *ngIf="alertRegister" class="alert alert-info">
+            {{alertRegister}}
+          </div>
+          <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-6">
+            <p>
+              <label>Name:</label>
+              <input  #name="ngModel" name= "name" [(ngModel)]="user_register.name"  type="text" class="form-control" required>
+              <span *ngIf="!name.valid && name.touched">Name is required</span>
+            </p>
+            <p>
+              <label>Last name:</label>
+              <input #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" type="text" class="form-control">
+              
+            </p>
+            <p>
+              <label>Email:</label>
+              <input #emailre="ngModel" name="email" [(ngModel)]="user_register.email" type="email" class="form-control" required>
+              <span *ngIf="!emailre.valid && emailre.touched">Email is required</span>
+            </p>
+            <p>
+              <label>Password:</label>
+              <input #passwordre="ngModel" name="password" [(ngModel)]="user_register.password" type="password" class="form-control" required>
+              <span *ngIf="!passwordre.valid && passwordre.touched">Password is required</span>
+            </p>
+            <input type="submit" value="Register" class="btn btn-default" [disabled]="!registerForm.form.valid">
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

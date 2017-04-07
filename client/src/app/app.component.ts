@@ -11,7 +11,7 @@ import {Router,ActivatedRoute, Params} from '@angular/router';
   providers: [UserService]
 })
 export class AppComponent implements OnInit {
-  public title = 'Musicfy';
+  public title = 'NgMusic';
   public user: User;
   public user_register: User;
   public identity;
