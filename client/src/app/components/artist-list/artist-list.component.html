@@ -24,14 +24,18 @@
         </div><img class="img-responsive" src="{{url+'get-image-artist/'+artist.image}}"/>
       </div>
       <div class="post-content">
-        <h1 class="title">{{artist.name}}</h1>
-        <a class="description" href="#">Biography</a>
+        <h1 class="title" >{{artist.name}}</h1>
+        <a class="description"[routerLink]=" ['/artist-information',artist._id] " >Biography</a>
         <a class="description" href="#">Albums</a>
         <a class="description" href="#">Songs</a>
           <div  *ngIf="identity.role == 'ROLE_ADMIN'" class="right">
               <a class="admin-button" [routerLink]=" ['/edit-artist',artist._id] ">Edit</a> ||
-              <a class="admin-button" href="#" >Delete</a>
-            </div>  
+              <a class="admin-button pointer" (click)="onDeleteConfirm(artist._id)" >Delete</a>
+          </div>
+          <div class="secure" *ngIf="confirmation == artist._id">
+            <a class=" pointer admin-button" (click)="onDeleteArtist(artist._id)" >Delete</a>    
+            <a class="admin-button pointer" (click)="onCancelArtist()">Cancel</a>
+          </div>  
         </div>
   
 

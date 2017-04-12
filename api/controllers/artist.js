@@ -11,7 +11,7 @@ function getArtist(req,res){
   var artistId = req.params.id;
   Artist.findById(artistId,(err,artist)=>{
     if(err){
-      res.status(500).send({message:'Error in the jasd'});
+      res.status(500).send({message:'Error in the request'});
     }else{
       if(!artist){
         res.status(200).send({message:'The artist doesnt exist'});

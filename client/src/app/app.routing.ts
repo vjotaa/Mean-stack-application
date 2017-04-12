@@ -1,22 +1,28 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
-
-
-//Import User
-
 import {UserEditComponent} from './components/user-edit/user-edit.component';
 import {ArtistListComponent} from './components/artist-list/artist-list.component';
 import {HomeComponent} from './components/home/home.component';
 import {AddArtistComponent} from './components/add-artist/add-artist.component';
 import {EditArtistComponent} from './components/edit-artist/edit-artist.component';
+import {ArtistDetailComponent} from './components/artist-detail/artist-detail.component';
+import {AlbumAddComponent} from './components/album-add/album-add.component';
+import {EditAlbumComponent} from './components/edit-album/edit-album.component';
+import {AlbumDetailComponent} from './components/album-detail/album-detail.component';
+
 const appRoutes: Routes = [
   
   {path: '', component: HomeComponent},
   {path: 'my-profile', component: UserEditComponent},
-  {path: 'artists/:page', component: ArtistListComponent},
   {path: 'create-artist', component: AddArtistComponent},
+  {path: 'artists/:page', component: ArtistListComponent},
   {path: 'edit-artist/:id', component: EditArtistComponent},
-  {path: '**', component: HomeComponent}
+  {path: 'artist-information/:id', component: ArtistDetailComponent},
+  {path: 'create-album/:artist', component: AlbumAddComponent},
+  {path: 'edit-album/:id', component: EditAlbumComponent},
+  {path: 'album/:id', component: AlbumDetailComponent},
+  {path: '**', component: HomeComponent},
+
 ]
 
 export const appRoutingProviders: any[] = [];

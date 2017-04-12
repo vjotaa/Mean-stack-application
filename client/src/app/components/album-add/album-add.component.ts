@@ -3,19 +3,22 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
 import { Artist } from '../../models/artist';
+import {Album} from '../../models/album';
 import {ArtistService} from '../../services/artist.service';
+import {AlbumService} from '../../services/album.service';
 
 
 @Component({
-  selector: 'app-add-artist',
-  templateUrl: './add-artist.component.html',
-  styleUrls: ['./add-artist.component.css'],
-  providers: [UserService,ArtistService]
+  selector: 'app-album-add',
+  templateUrl: './album-add.component.html',
+  styleUrls: ['./album-add.component.css'],
+  providers: [UserService,ArtistService,AlbumService]
 })
-export class AddArtistComponent implements OnInit {
+export class AlbumAddComponent implements OnInit {
   public title :string;
   public artist :Artist;
   public identity;
+  public album :Album;
   public token;
   public url :string;
   public alertMessage :string;
@@ -23,33 +26,37 @@ export class AddArtistComponent implements OnInit {
 
 
   constructor(
+
     private _route :ActivatedRoute,
     private _router :Router,
     private _userService :UserService,
-    private _ArtistService :ArtistService
+    private _ArtistService :ArtistService,
+    private _albumService :AlbumService
+
   ) { 
-    this.title = "Add Artist";
+    this.title = "Create Album";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url= GLOBAL.url;
-    this.artist = new Artist("","","");
+    this.album = new Album("","",2017,"","");
   }
-
-  ngOnInit() {
-       
+  ngOnInit(){
+    console.log("album add component load!")
   }
-
   onSubmit(){
-    console.log(this.artist);
-    this._ArtistService.addArtist(this.token,this.artist).subscribe(
+    this._route.params.forEach((params: Params)=>{
+      let artist_id = params['artist'];
+      this.album.artist = artist_id;
+
+      this._albumService.addAlbum(this.token,this.album).subscribe(
       response =>{
-        if(!response.artist){
+        if(!response.album){
           this.alertMessage = 'Error in the server';
         }else{
           
-          this.artist = response.artist;
           this.alertMessage = "Artist was created successfully";
-          this._router.navigate(['/edit-artist',response.artist._id]);
+          this.album = response.album;
+          this._router.navigate(['/edit-album',response.album._id]);
         }
       },
       error =>{
@@ -59,8 +66,9 @@ export class AddArtistComponent implements OnInit {
           this.alertMessage = body.message;
           console.log(error);
         }        
-      }
-    );
-  }
+      }        
+      );
 
+    });
+  }
 }

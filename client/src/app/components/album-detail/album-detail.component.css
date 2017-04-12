@@ -1,0 +1,13 @@
+#album-head-card .image{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    float: left;
+    margin-right: 30px;
+
+}
+
+#album-head-card .image img{
+    height: 150px;
+
+}

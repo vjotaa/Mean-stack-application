@@ -39,6 +39,7 @@ export class EditArtistComponent implements OnInit {
     this.url= GLOBAL.url;
     this.artist = new Artist("","","");
     this.is_edit = true;
+  
   }
 
   ngOnInit() {
@@ -79,14 +80,18 @@ export class EditArtistComponent implements OnInit {
             this.alertMessage = 'Error in the server';
           }else{
             this.alertMessage = 'The artist was updated correctly';
-            this._UploadService.makeFileRequest(this.url+'upload-image-artist/'+id,[],this.filesToUpload,this.token,'image').then(
-              (result)=>{
-                this._router.navigate(['/artists',1]);
-              },
-              (error)=>{
-                console.log(error);
-              }
-            );
+            if(!this.filesToUpload){
+              this._router.navigate(['artist-information',response.artist._id]);
+            }else{
+              this._UploadService.makeFileRequest(this.url+'upload-image-artist/'+id,[],this.filesToUpload,this.token,'image').then(
+                (result)=>{
+                  this._router.navigate(['artist-information',response.artist._id]);
+                },
+                (error)=>{
+                  console.log(error);
+                }
+              );   
+            }
           }
         },
         error =>{

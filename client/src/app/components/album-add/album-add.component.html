@@ -1,0 +1,54 @@
+
+<div *ngIf="identity && identity.role== 'ROLE_ADMIN'; else error " class="col-lg-6">
+  <h1>{{title}}</h1>
+
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info">
+      {{alertMessage}}
+    </div>
+  </div>
+  <form  #formAlbum= "ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <label >Title of the album</label>
+      <input class= "form-control" type="text" #titler="ngModel" name="titler" [(ngModel)]="album.title" required >
+      <span *ngIf= "!titler.valid && titler.touched">
+        Title is require!
+      </span>
+    </p>
+
+
+    <p>
+      <label >Description of the Album</label>
+      <textarea  class= "form-control"  #description="ngModel" name="description" [(ngModel)]="album.description" required > </textarea>
+      <span *ngIf= "!description.valid && description.touched">
+        Description is require!
+      </span>
+    </p>
+
+    <p>
+      <label >Year of the Album</label>
+      <input  class= "form-control"  #year="ngModel" name="year" [(ngModel)]="album.year" required >
+      <span *ngIf= "!year.valid && year.touched">
+        Year is require!
+      </span>
+    </p>   
+
+    <div *ngIf="is_edit">
+      <div class="album-image-for-edit" *ngIf="album.image && !album.image != 'null' ">
+        <img src="{{url+'get-image-album/'+album.image}}" alt="">
+        <p>
+          <label >Upload your image</label>
+          <input type="file" placeholder="Upload image" (change)="fileChangeEvent($event)" >
+        </p>
+      </div>
+    </div>
+    <input class = "btn btn-default" type="submit" value="{{title}}" [disabled]="!formAlbum.form.valid">
+
+
+
+  </form>
+
+</div>
+<ng-template #error>
+  <h1>You don't have the permission to stay here :)</h1>
+</ng-template>

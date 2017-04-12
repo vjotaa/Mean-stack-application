@@ -1,0 +1,53 @@
+<div class="container-fluid no-margin no-padding landing-detail">
+  <div class="col-lg-12 ">
+      <div *ngIf="artist" class="artist-box">
+        <div id="artist-head-card">
+          <div class="image">
+            <img src="{{url+'get-image-artist/' + artist.image}}" *ngIf="artist.image && artist.image !== 'null'">
+          </div>
+          <div class="data">
+            <h1>{{artist.name}}</h1>
+            <p class="description">{{artist.description}}</p>
+            <div *ngIf="identity.role == 'ROLE_ADMIN'" >
+              <a [routerLink]=" ['/create-album',artist._id] "> add album</a>
+            </div>
+
+          </div>
+        </div> 
+      </div>
+  </div>
+
+</div>
+<div class="container-fluid margin-top">
+
+  <div id="gallery-albums" *ngIf="albums">
+
+    <ul class="albums-list none">
+      <li *ngFor="let album of albums " class="col-lg-3 col-md-4 col-sm-6 col-xs-12 margin-top">
+            <div class="post-module-album">
+      <div class="thumbnail-album">
+
+        
+        <div>
+        </div><img src="{{url+'get-image-album/'+album.image}}"/>
+      </div>
+      <div class="post-content-album">
+        <a class="title-album" [routerLink]=" ['/album',album._id] ">{{album.title}}</a>
+        <a class="description-album" >{{album.description}}</a>
+          <div  *ngIf="identity.role == 'ROLE_ADMIN'">
+              <a class="admin-button" [routerLink]=" ['/edit-album',album._id] ">Edit</a> ||
+              <a class="admin-button pointer" (click)="onDeleteConfirm(album._id)" >Delete</a>
+          </div>
+          <div class="secure" *ngIf="confirmation == album._id">
+            <a class=" pointer admin-button" (click)="onDeleteAlbum(album._id)" >Delete</a>    
+            <a class="admin-button pointer" (click)="onCancelAlbum()">Cancel</a>
+          </div>  
+        </div>
+  
+
+    </div>
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -9,6 +9,10 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 import { HomeComponent } from './components/home/home.component';
 import { AddArtistComponent } from './components/add-artist/add-artist.component';
 import { EditArtistComponent } from './components/edit-artist/edit-artist.component';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
+import { AlbumAddComponent } from './components/album-add/album-add.component';
+import { EditAlbumComponent } from './components/edit-album/edit-album.component';
+import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { EditArtistComponent } from './components/edit-artist/edit-artist.compon
     ArtistListComponent,
     HomeComponent,
     AddArtistComponent,
-    EditArtistComponent
+    EditArtistComponent,
+    ArtistDetailComponent,
+    AlbumAddComponent,
+    EditAlbumComponent,
+    AlbumDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -84,9 +84,11 @@ a:hover{
     padding-bottom: 4px;
 }
 
-.artist-image-for-edit img{
+.artist-image-for-edit img,
+.album-image-for-edit img{
     width: 150px;
 }
+
 
 .col-centered{
   display: block;
@@ -234,4 +236,20 @@ height: 400px;
 right{
 
     text-align: right;
+}
+.margin-top{
+    margin-top: 35px;
+}
+
+.no-margin{
+    margin: 0px
+}
+
+.no-padding{
+    padding: 0px;
+}
+.landing-detail{
+
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.2);
 }
