@@ -56,8 +56,13 @@
       </div>
     </nav>
 </div>
-<div [class.hidden]="!identity" class="central no-padding col-lg-12">
+<div [class.hidden]="!identity" class=" central no-padding col-lg-12">
   <router-outlet></router-outlet>
+  <div class="clear-fix"> </div>
+  <footer class="footer">
+
+  <app-player *ngIf="identity"></app-player>
+  </footer>
 </div>
 <div *ngIf="!identity">
   <div class="full" *ngIf="!identity">

@@ -11,3 +11,42 @@
     height: 150px;
 
 }
+
+.inline{
+    display: inline;
+}
+
+a {
+    color: #ddd;
+    text-decoration: none;
+    display: inline;
+}
+.song-item .title p{
+    margin-top:15px;
+}
+
+
+#song-list{
+    margin: 0px;
+    padding: 0px;
+}
+
+.song-item{
+    color: lightgray;
+    list-style: none;
+    border-bottom: 1px solid #444;
+    padding-top: 5px;
+    margin-top:15px;
+}
+
+.song-item .right{
+    color:white;
+    float: right;
+}
+
+.song-item .btn-default{
+    margin: 10px;
+}
+.secure{
+    margin-right:7px; 
+}

@@ -1,0 +1,71 @@
+
+<div *ngIf="identity && identity.role== 'ROLE_ADMIN'; else error " class="col-lg-6">
+  <h1>{{title}}</h1>
+
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info">
+      {{alertMessage}}
+    </div>
+  </div>
+  <form  #formSong= "ngForm" (ngSubmit)="onSubmit()">
+
+
+    <p>
+      <label >Number of the song</label>
+      <input class= "form-control" type="text" #number="ngModel" name="number" [(ngModel)]="song.number" required >
+      <span *ngIf= "!number.valid && number.touched">
+        Number is require!
+      </span>
+    </p>
+    
+
+    <p>
+      <label >Name of the song</label>
+      <input class= "form-control" type="text" #name="ngModel" name="name" [(ngModel)]="song.name" required >
+      <span *ngIf= "!name.valid && name.touched">
+        Name is require!
+      </span>
+    </p>
+
+
+    <p>
+      <label >Duration of the song</label>
+      <input type="text" #duration="ngModel" name="duration" class="form-control" [(ngModel)]="song.duration" required>
+      <span *ngIf="!duration.valid && duration.touched">
+        Duration is required
+      </span>
+    </p>
+ 
+    <div *ngIf="is_edit">
+      <div class="song-file-for-edit" *ngIf="!song.file; else another">
+        <audio controls>
+            <source src="{{url+'get-song-file/'+song.file}}" type="audio/mpeg">
+              No lo soporta.
+        </audio>
+        <p>
+          <label >Upload your song</label>
+          <input type="file" placeholder="Upload song..." (change)="fileChangeEvent($event)" >
+        </p>
+      </div>
+
+      <ng-template #another>
+        <audio controls>
+            <source src="{{url+'get-song-file/'+song.file}}" type="audio/mpeg">
+              No lo soporta.
+        </audio>
+        <p>
+          <label >Upload your song</label>
+          <input type="file" placeholder="Upload song..." (change)="fileChangeEvent($event)" >
+        </p>        
+      </ng-template>
+    </div>
+    <input class = "btn btn-default" type="submit" value="{{title}}" [disabled]="!formSong.form.valid">
+
+
+
+  </form>
+
+</div>
+<ng-template #error>
+  <h1>You don't have the permission to stay here :)</h1>
+</ng-template>

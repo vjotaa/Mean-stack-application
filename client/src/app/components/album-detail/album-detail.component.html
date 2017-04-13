@@ -9,12 +9,32 @@
             <h1>{{album.title}}({{album.year}})</h1>
             <p class="description">{{album.description}}</p>
             <div *ngIf="identity.role == 'ROLE_ADMIN'" >
-              <a [routerLink]=" ['/create-album',artist._id] "> add Song</a>
+              <a [routerLink]=" ['/create-song',album._id] "> add Song</a>
             </div>
 
           </div>
         </div> 
       </div>
-  </div>
 
+  </div>
+</div>
+<div class="container margin-top">
+  <div id="gallery-songs" *ngIf="songs">
+    <ul id="songs-list">
+      <li *ngFor="let song of songs" class="song-item">
+        <div class="title">
+          <a class="btn btn-default" (click)="startPlayer(song)"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
+          {{song.number +' . ' +song.name + ' - ' + song.duration }}
+          <div class="right pointer "*ngIf="identity && identity.role == 'ROLE_ADMIN'">
+            <a [routerLink]="['/edit-song',song._id]">Edit</a> or
+            <a (click)="onDeleteConfirm(song._id)" >Delete</a>
+          </div>
+          <div class="secure right pointer" *ngIf="confirmation == song._id">
+            <a (click)="onDeleteSong(song._id)">Delete</a>
+            <a (click)="onCancelSong()" >Cancel</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
